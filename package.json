@@ -6,8 +6,9 @@
   "author": "github@schulke-214",
   "license": "MIT",
   "scripts": {
-    "start": "tsc index.ts && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --watch src --exec 'tsc' --ext ts",
+    "compile": "tsc",
+    "test:algorithm": "yarn compile && node test/algorithm.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/schulke-214/pixel-sort/issues"
   },
-  "homepage": "https://github.com/schulke-214/pixel-sort#readme"
+  "homepage": "https://github.com/schulke-214/pixel-sort#readme",
+  "dependencies": {
+    "nodemon": "^1.18.4"
+  }
 }

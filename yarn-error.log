@@ -1,0 +1,58 @@
+Arguments: 
+  /usr/local/Cellar/node/10.6.0/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js start
+
+PATH: 
+  /Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.7/bin
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  10.6.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  TypeError [ERR_INVALID_ARG_VALUE]: The argument 'file' cannot be empty. Received ''
+      at normalizeSpawnArguments (child_process.js:400:11)
+      at Object.spawn (child_process.js:522:38)
+      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:30244:24
+      at new Promise (<anonymous>)
+      at new F (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:23451:28)
+      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:30243:12
+      at run (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:41716:7)
+      at BlockingQueue.maybePushConcurrencyQueue (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:41731:7)
+      at BlockingQueue.shift (/usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:41726:10)
+      at /usr/local/Cellar/yarn/1.7.0/libexec/lib/cli.js:41670:15
+
+npm manifest: 
+  {
+    "name": "pixel-sort",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "github@schulke-214",
+    "license": "MIT",
+    "scripts": {
+      "start": "",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/schulke-214/pixel-sort.git"
+    },
+    "bugs": {
+      "url": "https://github.com/schulke-214/pixel-sort/issues"
+    },
+    "homepage": "https://github.com/schulke-214/pixel-sort#readme",
+    "dependencies": {
+      "nodemon": "^1.18.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

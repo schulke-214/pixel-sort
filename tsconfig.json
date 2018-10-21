@@ -1,18 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "sourceMap": true,
-    "outFile": "./lib/index.js",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
-  ]
+    "target": "es5",                          
+    "module": "commonjs",                     
+    "lib": ["es6","dom"],                     
+    "outDir": "lib",                          
+    "rootDir": "src",                         
+    "strict": true,                           
+    "esModuleInterop": true,                  
+    "resolveJsonModule": true                 
+  }
 }
