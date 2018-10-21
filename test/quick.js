@@ -2,9 +2,11 @@ const { Sorter } = require('../lib/index.js');
 
 let sorter = new Sorter();
 
-sorter.load('example.jpg').then( () => {
-    // console.log( Sorter.image ) 
-})
+( async () =>  {
+    await sorter.load('example.jpg');
+    await sorter.quicksort();
+    await sorter.save('sorted.png');
+} )()
 
 // sorter.load('./example.png').then( img => {
 //     sorter.dirtySort(img, { dirty: true, threshold: 0.231 }).then( sorted => {
