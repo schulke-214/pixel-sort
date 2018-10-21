@@ -1,0 +1,20 @@
+{
+  "name": "pixel-sort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "github@schulke-214",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc index.ts && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schulke-214/pixel-sort.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schulke-214/pixel-sort/issues"
+  },
+  "homepage": "https://github.com/schulke-214/pixel-sort#readme"
+}
