@@ -6,9 +6,9 @@
   "author": "github@schulke-214",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --watch src --exec 'tsc' --ext ts",
+    "start": "nodemon --watch ./src --exec 'tsc' -e ts",
     "compile": "tsc",
-    "test:algorithm": "yarn compile && node test/algorithm.js"
+    "test:quick": "nodemon --watch ./src --exec 'tsc && node test/quick.js' -e ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/schulke-214/pixel-sort#readme",
   "dependencies": {
+    "@types/node": "^10.12.0",
+    "jimp": "^0.5.4",
     "nodemon": "^1.18.4"
   }
 }
