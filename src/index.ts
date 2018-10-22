@@ -9,7 +9,6 @@ class Sorter {
     protected constructor() {
         if( module.parent )
             this.caller = path.parse( module.parent.filename );
-        
     }
 
     public async load( imgPath: string ):Promise<void> {
@@ -37,10 +36,21 @@ class Sorter {
             [ err ] = await to( Jimp.read( imgPath ) );
 
         if( err ) throw err;
-}
+    }
 
     public async quicksort():Promise<void> {
-        // do logic
+        const { width, height } = this.image.bitmap;
+
+        this.image.scan(0, 0, width, height, (x:number, y:number, pos:number) => {
+            const rgba = {
+                r: <number> this.image.bitmap.data[pos + 0],
+                g: <number> this.image.bitmap.data[pos + 1],
+                b: <number> this.image.bitmap.data[pos + 2],
+                a: <number> this.image.bitmap.data[pos + 3],
+            };
+
+            this.image.bitmap.data[pos + 3] = 120;
+        })
     }
 }
 
