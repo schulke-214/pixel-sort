@@ -4,7 +4,7 @@ let sorter = new Sorter();
 
 ( async () =>  {
     await sorter.load('example.jpg');
-    await sorter.quicksort();
+    await sorter.bsort({ invert: true });
     await sorter.save('sorted.png');
 } )()
 
