@@ -38,12 +38,11 @@ class Sorter {
         else  {
             // SET THE CLASS VARIABLE TO THE IMAGE
             this.image = img;
-            
+
             // SPLIT THE BUFFER INTO PIXELS AND SAVE THEM IN THE THIS.PIXELS
             let i:number = 0;
             for( let y = 0; y < this.image.bitmap.height; y++ ) {
                 this.pixels[y] = [];
-
                 for( let x = 0; x < this.image.bitmap.width; x++ ) {
                     this.pixels[y][x] = [
                         this.image.bitmap.data[i],
@@ -60,7 +59,7 @@ class Sorter {
 
     public async save( imgPath: string ):Promise<void> {
         let err:Error;
-
+        this.replaceBuffer()
         if( this.caller )
             [ err ] = await to( this.image.writeAsync(path.join( this.caller.dir, imgPath)) );
         else
@@ -72,11 +71,25 @@ class Sorter {
     // SORT ALGORITHM
     public async quicksort():Promise<void> {
         // MANIPULATE PIXEL ARRAY
+        for( let y = 0; y < this.image.bitmap.height; y++ ) {
+            for( let x = 0; x < this.image.bitmap.width; x++ ) {
+
+            }
+        }
     }
 
     // REPLACES BUFFER BITMAP WITH MANIPULATED PIXELS
     private async replaceBuffer():Promise<void> {
+        // FLATTEN PIXEL ARRAY SO A BITMAP CAN BE CREATED FROM IT
+        let bitmap:number[] = [];
 
+        for( let y = 0; y < this.image.bitmap.height; y++ ) {
+            for( let x = 0; x < this.image.bitmap.width; x++ ) {
+                bitmap.push(...this.pixels[y][x])
+            }
+        }
+
+        this.image.bitmap.data = Buffer.from(bitmap)
     }
 }
 
