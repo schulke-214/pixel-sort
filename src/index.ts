@@ -40,25 +40,21 @@ class Sorter {
             this.image = img;
             
             // SPLIT THE BUFFER INTO PIXELS AND SAVE THEM IN THE THIS.PIXELS
-        
-            let index = 0;
-
+            let i:number = 0;
             for( let y = 0; y < this.image.bitmap.height; y++ ) {
+                this.pixels[y] = [];
+
                 for( let x = 0; x < this.image.bitmap.width; x++ ) {
-                    // let i:number = y * this.image.bitmap.width + x;
+                    this.pixels[y][x] = [
+                        this.image.bitmap.data[i],
+                        this.image.bitmap.data[i + 1],
+                        this.image.bitmap.data[i + 2],
+                        this.image.bitmap.data[i + 3]
+                    ]
 
-                    this.pixels.push([
-                        this.image.bitmap.data[index],
-                        this.image.bitmap.data[index + 1],
-                        this.image.bitmap.data[index + 2],
-                        this.image.bitmap.data[index + 3]
-                    ])
-
-                    index += 4
+                    i += 4
                 }
             }
-
-            console.log( this.pixels.length )
         }
     }
 
