@@ -13,7 +13,8 @@ class Sorter {
 
     public async load( imgPath: string ):Promise<void> {
         let err:Error;
-        let img: any;
+        let img:any;
+
         // IF THE MODULE GOT IMPORTED
         if( this.caller )
             [ err, img ] = await to( Jimp.read( path.join( this.caller.dir, imgPath) ) );
@@ -33,24 +34,28 @@ class Sorter {
         if( this.caller )
             [ err ] = await to( this.image.writeAsync(path.join( this.caller.dir, imgPath)) );
         else
-            [ err ] = await to( Jimp.read( imgPath ) );
+            [ err ] = await to( this.image.writeAsync() );
 
         if( err ) throw err;
     }
 
     public async quicksort():Promise<void> {
-        const { width, height } = this.image.bitmap;
+        const data = this.image.bitmap.data;
+        let pixels:number[][] = [];
 
-        this.image.scan(0, 0, width, height, (x:number, y:number, pos:number) => {
-            const rgba = {
-                r: <number> this.image.bitmap.data[pos + 0],
-                g: <number> this.image.bitmap.data[pos + 1],
-                b: <number> this.image.bitmap.data[pos + 2],
-                a: <number> this.image.bitmap.data[pos + 3],
-            };
+        for( let i = 0; i < data.length; i += 4 ) {
+            pixels.push([
+                <number> data[i],
+                <number> data[i + 1],
+                <number> data[i + 2],
+                <number> 100 //data[i + 3]
+            ])
+        }
 
-            this.image.bitmap.data[pos + 3] = 120;
-        })
+        // pixels.reduce( (prev, curr) => { prev.concat(curr) });
+        // this.image.bitmap.data = pixels.flat();
+
+        console.log( pixels[pixels.length -1] )
     }
 }
 
