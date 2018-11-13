@@ -3,29 +3,63 @@ import path, { ParsedPath } from 'path';
 import { to } from 'await-to-js';
 
 class Sorter {
-    public image:any;
+    private image:any;
+    private pixels: number[][][];
+
     readonly caller:ParsedPath|undefined;
 
     protected constructor() {
+        this.pixels = [];
+
         if( module.parent )
             this.caller = path.parse( module.parent.filename );
     }
 
+    // @INSTANCEMETHOD LOAD<PROMISE>
+    // THIS METHOD LOADS A IMAGE INTO THIS CLASS
+    // THE ONLY ARGUMENT IS THE PATH WHERE THE IMAGE WHICH SHOULD BE LOADED IS LOCATED
     public async load( imgPath: string ):Promise<void> {
+        // INITIALIZE VARIABLES
         let err:Error;
         let img:any;
 
-        // IF THE MODULE GOT IMPORTED
+        // IN THE CASE THIS CLASS GOT IMPORTET SET THE PATH RELATIVE TO THE DIRECTORY OF THE IMPORT DIR
+        // IF JIMP.READ DOESNT FIND A MATCHING IMAGE THE ERROR VARIABLE WILL BE SET 
         if( this.caller )
             [ err, img ] = await to( Jimp.read( path.join( this.caller.dir, imgPath) ) );
         else
             [ err, img ] = await to( Jimp.read( imgPath ) );
 
-
+        // THROW A CUSTOM ERROR IF NO IMAGE COULD BE LOADED
         if( err ) 
             throw new Error('Image not found.');
-        else 
+        
+        // PROCESS THE LOADED IMAGE
+        else  {
+            // SET THE CLASS VARIABLE TO THE IMAGE
             this.image = img;
+            
+            // SPLIT THE BUFFER INTO PIXELS AND SAVE THEM IN THE THIS.PIXELS
+        
+            let index = 0;
+
+            for( let y = 0; y < this.image.bitmap.height; y++ ) {
+                for( let x = 0; x < this.image.bitmap.width; x++ ) {
+                    // let i:number = y * this.image.bitmap.width + x;
+
+                    this.pixels.push([
+                        this.image.bitmap.data[index],
+                        this.image.bitmap.data[index + 1],
+                        this.image.bitmap.data[index + 2],
+                        this.image.bitmap.data[index + 3]
+                    ])
+
+                    index += 4
+                }
+            }
+
+            console.log( this.pixels.length )
+        }
     }
 
     public async save( imgPath: string ):Promise<void> {
@@ -39,23 +73,14 @@ class Sorter {
         if( err ) throw err;
     }
 
+    // SORT ALGORITHM
     public async quicksort():Promise<void> {
-        const data = this.image.bitmap.data;
-        let pixels:number[][] = [];
+        // MANIPULATE PIXEL ARRAY
+    }
 
-        for( let i = 0; i < data.length; i += 4 ) {
-            pixels.push([
-                <number> data[i],
-                <number> data[i + 1],
-                <number> data[i + 2],
-                <number> 100 //data[i + 3]
-            ])
-        }
+    // REPLACES BUFFER BITMAP WITH MANIPULATED PIXELS
+    private async replaceBuffer():Promise<void> {
 
-        // pixels.reduce( (prev, curr) => { prev.concat(curr) });
-        // this.image.bitmap.data = pixels.flat();
-
-        console.log( pixels[pixels.length -1] )
     }
 }
 
