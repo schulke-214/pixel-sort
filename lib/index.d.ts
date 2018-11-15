@@ -4,6 +4,8 @@ interface Options {
     direction: string;
     invert: boolean;
     threshold: number;
+    row: boolean;
+    collumn: boolean;
 }
 declare class Sorter {
     private image;
@@ -13,6 +15,8 @@ declare class Sorter {
     load(imgPath: string, callback?: Function): Promise<void>;
     save(imgPath: string, callback?: Function): Promise<void>;
     private replaceBuffer;
-    bsort(options: Options): Promise<void>;
+    private flatPixels;
+    lightsort(options: Options): Promise<void>;
+    colorsort(options: Options): Promise<void>;
 }
 export { Sorter };

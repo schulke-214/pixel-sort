@@ -6,12 +6,17 @@ import { to } from 'await-to-js';
 /*
     !!! TODO !!!
     Add decorators to fire the callback and do other usefull stuff
+
+    only one sort algorithm at the time - prevent calling 2 at the same time
 */
 
 interface Options {
     direction: string;
     invert: boolean;
     threshold: number;
+
+    row: boolean;
+    collumn: boolean;
 }
 
 class Sorter {
@@ -67,7 +72,7 @@ class Sorter {
         }
     }
 
-    // @INSTANCEMETHOD SAVE<PROMISE>
+    // @INSTANCEMETHOD SAVE:Promise<void>
     // THIS METHOD SAVES THE PIXEL MANIPULATED WITH THIS CLASS TO A GIVEN OUTPUT PATH
     public async save( imgPath: string, callback?: Function ):Promise<void> {
         // VARIABLE DECLARATION
@@ -90,51 +95,71 @@ class Sorter {
     // THIS METHOD REPLACES THE BUFFER BITMAP WITH MANIPULATED PIXELS
     private async replaceBuffer():Promise<void> {
         // INITIALIZE FLAT ARRAY
-        let bitmap:number[] = [];
+        let err:Error;
+        let res:any;
+        
+        [ err, res ] = await to( this.flatPixels() );
 
-        // FLATTEN PIXEL ARRAY SO A BITMAP CAN BE CREATED FROM IT
+        let bitmap:number[] = [...res];
+
+        // CREATE A NEW BUFFER WITH THE BITMAP DATA
+        if( err ) throw new Error('Failed saving Pixels to buffer.')
+
+        this.image.bitmap.data = Buffer.from( bitmap )
+    }
+
+    private async flatPixels():Promise<number[]> {
+        // INITIALIZE FLAT ARRAY
+        let flat:number[] = [];
+
+        // FLATTEN PIXEL ARRAY TO FLAT ARRAY
         for( let y = 0; y < this.image.bitmap.height; y++ ) {
             for( let x = 0; x < this.image.bitmap.width; x++ ) {
-                bitmap.push(...this.pixels[y][x])
+                flat.push(...this.pixels[y][x])
             }
         }
 
-        // CREATE A NEW BUFFER WITH THE BITMAP DATA
-        this.image.bitmap.data = Buffer.from(bitmap)
+        return flat;
     }
 
-    // SORT ALGORITHM
-    public async bsort( options:Options ):Promise<void> {
-        // MANIPULATE PIXEL ARRAY
-        for( let y = 0; y < this.image.bitmap.height; y++ ) {
-            this.pixels[y].sort( ( a, b ) => {
-                let brightnessA = a.reduce(( p,q ) => p+q, 0);
-                let brightnessB = b.reduce(( p,q ) => p+q, 0);
+    // @INTANCEMETHOD BSORT:Promise<void>
+    // THIS SORT ALGORITHM SORTS THE IMAGE BY BRIGHTNESS FOR EACH ROW OR FOR EACH COLLUMN
+    public async lightsort( options:Options ):Promise<void> {
+        let compareBrightness = ( a:number[], b:number[] ) => {
+            let brightnessA = a.reduce(( p:number,q:number ) => p+q, 0);
+            let brightnessB = b.reduce(( p:number,q:number ) => p+q, 0);
 
-                if( !options ) {
-                    if (brightnessA > brightnessB)
-                        return -1;
-  
-                    else if (brightnessA < brightnessB)
-                        return 1;  
-
-                    else
-                        return 0;
-                }
-
-                else {
-                    if (brightnessA < brightnessB)
+            if( !options.invert ) {
+                if (brightnessA > brightnessB)
                     return -1;
+                else if (brightnessA < brightnessB)
+                    return 1;  
+                else
+                    return 0;
+            }
 
-                    else if (brightnessA > brightnessB)
-                        return 1;  
+            else {
+                if (brightnessA < brightnessB)
+                    return -1;
+                else if (brightnessA > brightnessB)
+                    return 1;  
+                else
+                    return 0;
+            }
+        }
 
-                    else
-                        return 0;
-                }
-            })
+        // MANIPULATE PIXEL ARRAY FOR EACH Y ROW 
+        for( let y = 0; y < this.image.bitmap.height; y++ ) {
+            this.pixels[y].sort(compareBrightness)
         }
     }
+
+    public async colorsort( options:Options ):Promise<void> {
+
+
+    }
+
+
 }
 
 export { Sorter };

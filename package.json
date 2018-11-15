@@ -8,7 +8,16 @@
   "scripts": {
     "start": "nodemon --watch ./src --exec 'tsc' -e ts",
     "compile": "tsc",
-    "test:quick": "nodemon --watch ./src --exec 'tsc && node test/quick.js' -e ts"
+
+    "test:lightsort": "nodemon --watch ./src --exec 'tsc && node test/lightsort.js' -e ts",
+    "test:colorsort": "nodemon --watch ./src --exec 'tsc && node test/colorsort.js' -e ts",
+
+    "test:dirtysort": "nodemon --watch ./src --exec 'tsc && node test/dirtysort.js' -e ts",
+    "test:randomsort": "nodemon --watch ./src --exec 'tsc && node test/randomsort.js' -e ts",
+
+    "test:aetheticsort": "nodemon --watch ./src --exec 'tsc && node test/aestheticsort.js' -e ts",
+    "test:illusionsort": "nodemon --watch ./src --exec 'tsc && node test/illusionsort.js' -e ts"
+
   },
   "repository": {
     "type": "git",
