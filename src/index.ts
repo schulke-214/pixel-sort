@@ -6,8 +6,9 @@ import { to } from 'await-to-js';
 /*
     !!! TODO !!!
     Add decorators to fire the callback and do other usefull stuff
-
     only one sort algorithm at the time - prevent calling 2 at the same time
+    Improve API of this package
+    Release beta on NPM
 */
 
 interface Options {
@@ -66,7 +67,7 @@ class Sorter {
                         this.image.bitmap.data[i + 3]
                     ]
 
-                    i += 4
+                    i += 4;
                 }
             }
         }
@@ -91,7 +92,7 @@ class Sorter {
         if( err ) throw err;
     }
 
-    // @INSTACEMETHOD REPLACEBUFFER: Promise<void>
+    // @INSTACEMETHOD REPLACEBUFFER:Promise<void>
     // THIS METHOD REPLACES THE BUFFER BITMAP WITH MANIPULATED PIXELS
     private async replaceBuffer():Promise<void> {
         // INITIALIZE FLAT ARRAY
@@ -103,11 +104,13 @@ class Sorter {
         let bitmap:number[] = [...res];
 
         // CREATE A NEW BUFFER WITH THE BITMAP DATA
-        if( err ) throw new Error('Failed saving Pixels to buffer.')
+        if( err ) throw new Error('Failed saving Pixels to buffer.');
 
-        this.image.bitmap.data = Buffer.from( bitmap )
+        this.image.bitmap.data = Buffer.from( bitmap );
     }
 
+    // @INSTANCEMETHOD FLATPIXELS:Promise<number[]>
+    // THIS RETURNS THE FLAT VERSION OF THIS.PIXELS
     private async flatPixels():Promise<number[]> {
         // INITIALIZE FLAT ARRAY
         let flat:number[] = [];
@@ -148,7 +151,7 @@ class Sorter {
             }
         }
 
-        // MANIPULATE PIXEL ARRAY FOR EACH Y ROW 
+        // MANIPULATE PIXEL ARRAY FOR EACH ROW 
         for( let y = 0; y < this.image.bitmap.height; y++ ) {
             this.pixels[y].sort(compareBrightness)
         }
@@ -158,8 +161,6 @@ class Sorter {
 
 
     }
-
-
 }
 
 export { Sorter };
