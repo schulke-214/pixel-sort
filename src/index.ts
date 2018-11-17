@@ -13,13 +13,9 @@ import { to } from 'await-to-js';
 
 interface Options {
     direction: string;
-    invert: boolean;
-
     threshold: number;
     ceiling: number;
-
-    row: boolean;
-    collumn: boolean;
+    vertical: boolean;
 }
 
 class Sorter {
@@ -110,33 +106,86 @@ class Sorter {
         this.image.bitmap.data = Buffer.from( bitmap );
     }
 
+    private async validateOptions( options:Options ):Promise<void> {
+
+        // OPTIONS.DIRECTION VALIDATION
+        if( options.direction ) {
+            // DEFAULT ERROR IF WRONG TYPE
+            if( typeof options.direction !== 'string' )
+                throw new Error('OptionError: direction must be a string.')
+
+            switch( options.direction ) {
+                case 'UP': break;
+                case 'DOWN': break;
+                case 'LTR': break;
+                case 'RTL': break;
+                default: throw new Error('OptionError: unknown direction.')
+            }
+        }
+
+        // OPTIONS.THRESHOLD VALIDATION
+        if( options.threshold ) {
+            // DEFAULT ERROR IF WRONG TYPE
+            if( typeof options.threshold !== 'number' )
+                throw new Error('OptionError: threshold must be a number.')
+        }
+
+        // OPTIONS.CEILING VALIDATION
+        if( options.ceiling ) {
+            // DEFAULT ERROR IF WRONG TYPE
+            if( typeof options.ceiling !== 'number' )
+                throw new Error('OptionError: ceiling must be a number.')
+        }
+
+        // OPTIONS.VERTICAL VALIDATION
+        if( options.vertical ) {
+            // DEFAULT ERROR IF WRONG TYPE
+            if( typeof options.vertical !== 'boolean' )
+                throw new Error('OptionError: vertical must be a boolean.')
+        }
+    }
+
     // @INTANCEMETHOD BSORT:Promise<void>
     // THIS SORT ALGORITHM SORTS THE IMAGE BY BRIGHTNESS FOR EACH ROW OR FOR EACH COLLUMN
     public async lightsort( options:Options ):Promise<void> {
+        this.validateOptions( options );
+
         let compareBrightness = ( a:number[], b:number[] ) => {
             // REMOVE ALPHA VALUES FROM PIXELS
             let brightnessA = a.reduce(( p:number, q:number ) => p+q, 0);
             let brightnessB = b.reduce(( p:number, q:number ) => p+q, 0);
 
+            if( !options.direction ) options.direction = 'LTR';
+
+            switch( options.direction ) {
+                case 'UP': 
+                    break;
+                case 'DOWN': 
+                    break;
+                case 'LTR': 
+                    break;
+                case 'RTL': 
+                    break;
+            }
             // SORT LEFT TO RIGHT
-            if( !options.invert ) {
+            // if( !options.invert ) {
                 if (brightnessA > brightnessB)
                     return -1;
                 else if (brightnessA < brightnessB)
                     return 1;  
                 else
                     return 0;
-            }
+            // }
 
-            // SORT RIGHT TO LEFT
-            else {
-                if (brightnessA < brightnessB)
-                    return -1;
-                else if (brightnessA > brightnessB)
-                    return 1;  
-                else
-                    return 0;
-            }
+            // // SORT RIGHT TO LEFT
+            // else {
+            //     if (brightnessA < brightnessB)
+            //         return -1;
+            //     else if (brightnessA > brightnessB)
+            //         return 1;  
+            //     else
+            //         return 0;
+            // }
         }
 
         // MANIPULATE PIXEL ARRAY FOR EACH ROW 

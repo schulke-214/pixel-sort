@@ -2,11 +2,9 @@
 import { ParsedPath } from 'path';
 interface Options {
     direction: string;
-    invert: boolean;
     threshold: number;
     ceiling: number;
-    row: boolean;
-    collumn: boolean;
+    vertical: boolean;
 }
 declare class Sorter {
     private image;
@@ -16,6 +14,7 @@ declare class Sorter {
     load(imgPath: string, callback?: Function): Promise<void>;
     save(imgPath: string, callback?: Function): Promise<void>;
     private replaceBuffer;
+    private validateOptions;
     lightsort(options: Options): Promise<void>;
     colorsort(options: Options): Promise<void>;
 }
