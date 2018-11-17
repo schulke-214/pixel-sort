@@ -4,6 +4,7 @@ interface Options {
     direction: string;
     invert: boolean;
     threshold: number;
+    ceiling: number;
     row: boolean;
     collumn: boolean;
 }
@@ -15,7 +16,6 @@ declare class Sorter {
     load(imgPath: string, callback?: Function): Promise<void>;
     save(imgPath: string, callback?: Function): Promise<void>;
     private replaceBuffer;
-    private flatPixels;
     lightsort(options: Options): Promise<void>;
     colorsort(options: Options): Promise<void>;
 }

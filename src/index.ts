@@ -14,7 +14,9 @@ import { to } from 'await-to-js';
 interface Options {
     direction: string;
     invert: boolean;
+
     threshold: number;
+    ceiling: number;
 
     row: boolean;
     collumn: boolean;
@@ -96,42 +98,27 @@ class Sorter {
     // THIS METHOD REPLACES THE BUFFER BITMAP WITH MANIPULATED PIXELS
     private async replaceBuffer():Promise<void> {
         // INITIALIZE FLAT ARRAY
-        let err:Error;
-        let res:any;
-        
-        [ err, res ] = await to( this.flatPixels() );
-
-        let bitmap:number[] = [...res];
-
-        // CREATE A NEW BUFFER WITH THE BITMAP DATA
-        if( err ) throw new Error('Failed saving Pixels to buffer.');
-
-        this.image.bitmap.data = Buffer.from( bitmap );
-    }
-
-    // @INSTANCEMETHOD FLATPIXELS:Promise<number[]>
-    // THIS RETURNS THE FLAT VERSION OF THIS.PIXELS
-    private async flatPixels():Promise<number[]> {
-        // INITIALIZE FLAT ARRAY
-        let flat:number[] = [];
+        let bitmap:number[] = [];
 
         // FLATTEN PIXEL ARRAY TO FLAT ARRAY
         for( let y = 0; y < this.image.bitmap.height; y++ ) {
             for( let x = 0; x < this.image.bitmap.width; x++ ) {
-                flat.push(...this.pixels[y][x])
+                bitmap.push(...this.pixels[y][x])
             }
         }
 
-        return flat;
+        this.image.bitmap.data = Buffer.from( bitmap );
     }
 
     // @INTANCEMETHOD BSORT:Promise<void>
     // THIS SORT ALGORITHM SORTS THE IMAGE BY BRIGHTNESS FOR EACH ROW OR FOR EACH COLLUMN
     public async lightsort( options:Options ):Promise<void> {
         let compareBrightness = ( a:number[], b:number[] ) => {
-            let brightnessA = a.reduce(( p:number,q:number ) => p+q, 0);
-            let brightnessB = b.reduce(( p:number,q:number ) => p+q, 0);
+            // REMOVE ALPHA VALUES FROM PIXELS
+            let brightnessA = a.reduce(( p:number, q:number ) => p+q, 0);
+            let brightnessB = b.reduce(( p:number, q:number ) => p+q, 0);
 
+            // SORT LEFT TO RIGHT
             if( !options.invert ) {
                 if (brightnessA > brightnessB)
                     return -1;
@@ -141,6 +128,7 @@ class Sorter {
                     return 0;
             }
 
+            // SORT RIGHT TO LEFT
             else {
                 if (brightnessA < brightnessB)
                     return -1;
@@ -158,7 +146,6 @@ class Sorter {
     }
 
     public async colorsort( options:Options ):Promise<void> {
-
 
     }
 }
