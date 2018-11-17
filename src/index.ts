@@ -9,6 +9,34 @@ import { to } from 'await-to-js';
     only one sort algorithm at the time - prevent calling 2 at the same time
     Improve API of this package
     Release beta on NPM
+
+
+    10 zeilen ( y )
+
+    let arr = []
+    
+    for( let y = 0; y < this.image.bitmap.height; y++ )
+        arr.push( pixel )
+
+
+    [   ZEILEN
+        [   PIXEL
+            [],
+            []
+        ]
+    ],
+    [   ZEILEN
+        [   PIXEL
+            [],
+            []
+        ],
+    ],
+    [   ZEILEN
+        [   PIXEL
+            [],
+            []
+        ]
+    ]
 */
 
 interface Options {
@@ -115,8 +143,8 @@ class Sorter {
                 throw new Error('OptionError: direction must be a string.')
 
             switch( options.direction ) {
-                case 'UP': break;
-                case 'DOWN': break;
+                case 'TTB': break;
+                case 'BTT': break;
                 case 'LTR': break;
                 case 'RTL': break;
                 default: throw new Error('OptionError: unknown direction.')
@@ -150,48 +178,67 @@ class Sorter {
     public async lightsort( options:Options ):Promise<void> {
         this.validateOptions( options );
 
-        let compareBrightness = ( a:number[], b:number[] ) => {
+        const compareBrightness = ( a:number[], b:number[] ):number => {
             // REMOVE ALPHA VALUES FROM PIXELS
             let brightnessA = a.reduce(( p:number, q:number ) => p+q, 0);
             let brightnessB = b.reduce(( p:number, q:number ) => p+q, 0);
 
-            if( !options.direction ) options.direction = 'LTR';
+            switch( true ) {
+                case options.direction === 'TTB' || options.direction ===  'LTR':
+                    if (brightnessA > brightnessB)
+                        return -1;
+                    else if (brightnessA < brightnessB)
+                        return 1;  
+                    else
+                        return 0;
 
-            switch( options.direction ) {
-                case 'UP': 
-                    break;
-                case 'DOWN': 
-                    break;
-                case 'LTR': 
-                    break;
-                case 'RTL': 
-                    break;
-            }
-            // SORT LEFT TO RIGHT
-            // if( !options.invert ) {
-                if (brightnessA > brightnessB)
-                    return -1;
-                else if (brightnessA < brightnessB)
-                    return 1;  
-                else
+                
+                case options.direction === 'BTT' || options.direction ===  'RTL':
+                    if (brightnessA < brightnessB)
+                        return -1;
+                    else if (brightnessA > brightnessB)
+                        return 1;  
+                    else
+                        return 0;
+
+                default:
                     return 0;
-            // }
-
-            // // SORT RIGHT TO LEFT
-            // else {
-            //     if (brightnessA < brightnessB)
-            //         return -1;
-            //     else if (brightnessA > brightnessB)
-            //         return 1;  
-            //     else
-            //         return 0;
-            // }
+            }
         }
 
-        // MANIPULATE PIXEL ARRAY FOR EACH ROW 
-        for( let y = 0; y < this.image.bitmap.height; y++ ) {
-            this.pixels[y].sort(compareBrightness)
+        if( !options.direction ) 
+            options.direction = 'TTB';
+
+        switch( true ) {
+            case options.direction === 'TTB' || options.direction ===  'BTT':
+                for( let x = 0; x < this.image.bitmap.width; x++ ) {
+                    let pixels:number[][] = [];
+
+                    // PIXEL AUS Y ROW IN ARR PUSHEN
+
+                    // ARR SORTIEREN
+
+                    // ARR AUF THIS.PIXELS MAPPEN
+
+
+                    for( let y = 0; y < this.image.bitmap.height; y++ ) {
+                        pixels.push()
+                    }
+                }
+
+                    // this.pixels[y].sort(compareBrightness);
+
+
+                break; 
+            case options.direction === 'LTR' || options.direction ===  'RTL':
+                // MANIPULATE PIXEL ARRAY FOR EACH ROW 
+                for( let y = 0; y < this.image.bitmap.height; y++ )
+                    this.pixels[y].sort(compareBrightness);
+
+                break;
         }
+
+ 
     }
 
     public async colorsort( options:Options ):Promise<void> {

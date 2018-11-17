@@ -6,6 +6,6 @@ let sorter = new Sorter();
     console.log('*** lightsort ***')
 
     await sorter.load('./data/example.png');
-    await sorter.lightsort({ direction: 'RTL' });
+    await sorter.lightsort({ });
     await sorter.save('./output/lightsort.png');
 } )()
