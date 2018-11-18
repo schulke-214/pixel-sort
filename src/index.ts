@@ -9,41 +9,12 @@ import { to } from 'await-to-js';
     only one sort algorithm at the time - prevent calling 2 at the same time
     Improve API of this package
     Release beta on NPM
-
-
-    10 zeilen ( y )
-
-    let arr = []
-    
-    for( let y = 0; y < this.image.bitmap.height; y++ )
-        arr.push( pixel )
-
-
-    [   ZEILEN
-        [   PIXEL
-            [],
-            []
-        ]
-    ],
-    [   ZEILEN
-        [   PIXEL
-            [],
-            []
-        ],
-    ],
-    [   ZEILEN
-        [   PIXEL
-            [],
-            []
-        ]
-    ]
 */
 
 interface Options {
     direction: string;
     threshold: number;
     ceiling: number;
-    vertical: boolean;
 }
 
 class Sorter {
@@ -51,16 +22,16 @@ class Sorter {
     private pixels: number[][][];
     readonly caller?: ParsedPath;
 
-    protected constructor() {
+    constructor() {
         this.pixels = [];
 
         if( module.parent )
             this.caller = path.parse( module.parent.filename );
     }
 
-    // @INSTANCEMETHOD LOAD<PROMISE>
+    // @METHOD LOAD<PROMISE>
     // THIS METHOD LOADS A IMAGE INTO THIS CLASS WITH A GIVEN PATH
-    public async load( imgPath: string, callback?: Function ):Promise<void> {
+    public async load( imgPath:string, callback?:Function ):Promise<void> {
         // INITIALIZE VARIABLES
         let err:Error;
         let img:any;
@@ -97,11 +68,14 @@ class Sorter {
                 }
             }
         }
+
+
+        if( typeof callback === 'function' ) callback();
     }
 
-    // @INSTANCEMETHOD SAVE:Promise<void>
+    // @METHOD SAVE:Promise<void>
     // THIS METHOD SAVES THE PIXEL MANIPULATED WITH THIS CLASS TO A GIVEN OUTPUT PATH
-    public async save( imgPath: string, callback?: Function ):Promise<void> {
+    public async save( imgPath:string, callback?:Function ):Promise<void> {
         // VARIABLE DECLARATION
         let err:Error;
         
@@ -116,9 +90,10 @@ class Sorter {
 
         // IF A ERROR OCCURED WHILE SAVING THROW IT
         if( err ) throw err;
+        if( typeof callback === 'function' ) callback();
     }
 
-    // @INSTACEMETHOD REPLACEBUFFER:Promise<void>
+    // @METHOD REPLACEBUFFER:Promise<void>
     // THIS METHOD REPLACES THE BUFFER BITMAP WITH MANIPULATED PIXELS
     private async replaceBuffer():Promise<void> {
         // INITIALIZE FLAT ARRAY
@@ -134,20 +109,20 @@ class Sorter {
         this.image.bitmap.data = Buffer.from( bitmap );
     }
 
+    // @METHOD VALIDATEOPTIONS:Promise<void>
     private async validateOptions( options:Options ):Promise<void> {
-
         // OPTIONS.DIRECTION VALIDATION
         if( options.direction ) {
             // DEFAULT ERROR IF WRONG TYPE
             if( typeof options.direction !== 'string' )
-                throw new Error('OptionError: direction must be a string.')
+                throw new Error('direction must be a string.')
 
             switch( options.direction ) {
                 case 'TTB': break;
                 case 'BTT': break;
                 case 'LTR': break;
                 case 'RTL': break;
-                default: throw new Error('OptionError: unknown direction.')
+                default: throw new Error('unknown direction.')
             }
         }
 
@@ -155,27 +130,20 @@ class Sorter {
         if( options.threshold ) {
             // DEFAULT ERROR IF WRONG TYPE
             if( typeof options.threshold !== 'number' )
-                throw new Error('OptionError: threshold must be a number.')
+                throw new Error('threshold must be a number.')
         }
 
         // OPTIONS.CEILING VALIDATION
         if( options.ceiling ) {
             // DEFAULT ERROR IF WRONG TYPE
             if( typeof options.ceiling !== 'number' )
-                throw new Error('OptionError: ceiling must be a number.')
-        }
-
-        // OPTIONS.VERTICAL VALIDATION
-        if( options.vertical ) {
-            // DEFAULT ERROR IF WRONG TYPE
-            if( typeof options.vertical !== 'boolean' )
-                throw new Error('OptionError: vertical must be a boolean.')
+                throw new Error('ceiling must be a number.')
         }
     }
 
-    // @INTANCEMETHOD BSORT:Promise<void>
+    // @METHOD LIGHTSORT:Promise<void>
     // THIS SORT ALGORITHM SORTS THE IMAGE BY BRIGHTNESS FOR EACH ROW OR FOR EACH COLLUMN
-    public async lightsort( options:Options ):Promise<void> {
+    public async lightsort( options:Options, callback?:Function ):Promise<void> {
         this.validateOptions( options );
 
         const compareBrightness = ( a:number[], b:number[] ):number => {
@@ -224,9 +192,8 @@ class Sorter {
                     for( let y = 0; y < this.image.bitmap.height; y++ )
                         this.pixels[y][x] = collumn[y];
                 }
-
-
                 break; 
+
             case options.direction === 'LTR' || options.direction ===  'RTL':
                 // MANIPULATE PIXEL ARRAY FOR EACH ROW 
                 for( let y = 0; y < this.image.bitmap.height; y++ )
@@ -235,11 +202,14 @@ class Sorter {
                 break;
         }
 
- 
+        if( typeof callback === 'function' ) callback();
     }
 
-    public async colorsort( options:Options ):Promise<void> {
+    // @METHOD LIGHTSORT:Promise<void>
+    public async colorsort( options:Options, callback?: Function ):Promise<void> {
+        this.validateOptions( options );
 
+        if( typeof callback === 'function' ) callback();
     }
 }
 
