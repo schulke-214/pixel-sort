@@ -192,7 +192,6 @@ class Sorter {
                     else
                         return 0;
 
-                
                 case options.direction === 'BTT' || options.direction ===  'RTL':
                     if (brightnessA < brightnessB)
                         return -1;
@@ -212,21 +211,19 @@ class Sorter {
         switch( true ) {
             case options.direction === 'TTB' || options.direction ===  'BTT':
                 for( let x = 0; x < this.image.bitmap.width; x++ ) {
-                    let pixels:number[][] = [];
+                    let collumn:number[][] = [];
 
-                    // PIXEL AUS Y ROW IN ARR PUSHEN
+                    // PUSH PIXELS INTO COL ARRA>
+                    for( let y = 0; y < this.image.bitmap.height; y++ )
+                        collumn.push( this.pixels[y][x] );
 
-                    // ARR SORTIEREN
+                    // SORT COLLUMN WITH BRIGHTNESS
+                    collumn.sort(compareBrightness);
 
-                    // ARR AUF THIS.PIXELS MAPPEN
-
-
-                    for( let y = 0; y < this.image.bitmap.height; y++ ) {
-                        pixels.push()
-                    }
+                    // MAP COLLUMN BACK TO THIS.PIXELS
+                    for( let y = 0; y < this.image.bitmap.height; y++ )
+                        this.pixels[y][x] = collumn[y];
                 }
-
-                    // this.pixels[y].sort(compareBrightness);
 
 
                 break; 
