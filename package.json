@@ -1,6 +1,6 @@
 {
 	"name": "pixel-sort",
-	"version": "2.0.0",
+	"version": "1.0.0",
 	"description": "",
 	"author": "github@schulke-214",
 	"main": "./lib/index.js",
@@ -36,7 +36,9 @@
 	"dependencies": {
 		"@types/node": "^10.12.0",
 		"await-to-js": "^2.0.1",
-		"jimp": "^0.5.4",
+		"jimp": "^0.5.4"
+	},
+	"devDependencies": {
 		"nodemon": "^1.18.4"
 	}
 }
