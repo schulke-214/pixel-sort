@@ -6,4 +6,5 @@
 
 ## Installation
 ## Examples
-## License
+#### License
+pixel-sorter is licensed under the [MIT License.](https://github.com/schulke-214/pixel-sort/blob/master/LICENSE)
