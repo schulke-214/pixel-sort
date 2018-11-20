@@ -1,6 +1,6 @@
 {
 	"name": "pixel-sort",
-	"version": "1.1.0",
+	"version": "1.0.1",
 	"description": "",
 	"author": "github@schulke-214",
 	"main": "./lib/index.js",
