@@ -1,7 +1,7 @@
 {
 	"name": "pixel-sort",
-	"version": "1.0.1",
-	"description": "",
+	"version": "1.0.2",
+	"description": "A library for creating pixel art with node.js",
 	"author": "github@schulke-214",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
