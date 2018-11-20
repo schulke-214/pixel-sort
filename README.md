@@ -3,8 +3,12 @@
 
 [pixel-sort](https://www.npmjs.com/package/pixel-sort/) is a library for creating pixel art with node.js.
 
+## Examples
+These are a few images sorted with [pixel-sort](https://www.npmjs.com/package/pixel-sort/).
+
 
 ## Installation
-## Examples
+## API Documentation
+
 #### License
-pixel-sorter is licensed under the [MIT License.](https://github.com/schulke-214/pixel-sort/blob/master/LICENSE)
+pixel-sort is licensed under the [MIT License.](https://github.com/schulke-214/pixel-sort/blob/master/LICENSE)
