@@ -1,5 +1,6 @@
 # pixel-sort
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=popout)](http://opensource.org/licenses/MIT) 
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=popout)](http://opensource.org/licenses/MIT)
+
 [![Dependency Status](https://img.shields.io/david/schulke-214/pixel-sort.svg?style=popout)](https://david-dm.org/schulke-214/pixel-sort)
 [![npm](https://img.shields.io/npm/v/pixel-sort.svg?style=popout)](https://www.npmjs.com/package/pixel-sort/)
 
@@ -50,9 +51,11 @@ sorter.load('./raw.png', err => {
 ```
 
 
-##### Loading and Saving Images
-##### Algorithms
-
+##### Constructor
+##### Load
+##### Save
+##### Lightsort
+##### Colorsort
 
 ## License
 pixel-sort is licensed under the [MIT License](https://github.com/schulke-214/pixel-sort/blob/master/LICENSE).
