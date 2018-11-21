@@ -10,7 +10,6 @@
 	"scripts": {
 		"start": "nodemon --watch ./src --exec 'tsc' -e ts",
 		"compile": "tsc",
-
 		"test:lightsort": "nodemon --watch ./src --exec 'tsc && node test/lightsort.js' -e ts",
 		"test:colorsort": "nodemon --watch ./src --exec 'tsc && node test/colorsort.js' -e ts",
 		"test:dirtysort": "nodemon --watch ./src --exec 'tsc && node test/dirtysort.js' -e ts",
