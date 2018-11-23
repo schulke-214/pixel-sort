@@ -5,12 +5,12 @@ import { to } from 'await-to-js';
 
 /*
     !!! TODO !!!
-    Add decorators to fire the callback and do other usefull stuff
     only one sort algorithm at the time - prevent calling 2 at the same time
     Improve API of this package
 
     getPixels() Methods
 */
+
 
 interface Options {
     direction: string;
