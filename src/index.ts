@@ -6,7 +6,7 @@ import { to } from 'await-to-js';
 /*
     !!! TODO !!!
     only one sort algorithm at the time - prevent calling 2 at the same time
-    Improve API of this package
+    Improve API of this package"
     getPixels() Methods
 */
 
