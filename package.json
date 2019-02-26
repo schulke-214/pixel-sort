@@ -1,44 +1,44 @@
 {
-	"name": "pixel-sort",
-	"version": "1.0.5",
-	"description": "A library for creating pixel art with node.js",
-	"author": "github@schulke-214",
-	"main": "./lib/index.js",
-	"types": "./lib/index.d.ts",
-	"license": "MIT",
-	"deprecated": false,
-	"scripts": {
-		"start": "nodemon --watch ./src --exec 'tsc' -e ts",
-		"compile": "tsc",
-		"test:lightsort": "nodemon --watch ./src --exec 'tsc && node test/lightsort.js' -e ts",
-		"test:colorsort": "nodemon --watch ./src --exec 'tsc && node test/colorsort.js' -e ts",
-		"test:dirtysort": "nodemon --watch ./src --exec 'tsc && node test/dirtysort.js' -e ts",
-		"test:randomsort": "nodemon --watch ./src --exec 'tsc && node test/randomsort.js' -e ts",
-		"test:aetheticsort": "nodemon --watch ./src --exec 'tsc && node test/aestheticsort.js' -e ts",
-		"test:illusionsort": "nodemon --watch ./src --exec 'tsc && node test/illusionsort.js' -e ts"
-	},
-	"keywords": [
-		"pixel art",
-		"art",
-		"sorting",
-		"image",
-		"manipulation",
-		"glitch"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/schulke-214/pixel-sort.git"
-	},
-	"bugs": {
-		"url": "https://github.com/schulke-214/pixel-sort/issues"
-	},
-	"homepage": "https://github.com/schulke-214/pixel-sort#readme",
-	"dependencies": {
-		"await-to-js": "^2.1.1",
-		"jimp": "^0.6.0"
-	},
-	"devDependencies": {
-		"@types/node": "^10.12.11",
-		"nodemon": "^1.18.7"
-	}
+    "name": "pixel-sort",
+    "version": "1.0.6",
+    "description": "A library for creating pixel art with node.js",
+    "author": "github@schulke-214",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "license": "MIT",
+    "deprecated": false,
+    "scripts": {
+        "start": "nodemon --watch ./src --exec 'tsc' -e ts",
+        "compile": "tsc",
+        "test:lightsort": "nodemon --watch ./src --exec 'tsc && node test/lightsort.js' -e ts",
+        "test:colorsort": "nodemon --watch ./src --exec 'tsc && node test/colorsort.js' -e ts",
+        "test:dirtysort": "nodemon --watch ./src --exec 'tsc && node test/dirtysort.js' -e ts",
+        "test:randomsort": "nodemon --watch ./src --exec 'tsc && node test/randomsort.js' -e ts",
+        "test:aetheticsort": "nodemon --watch ./src --exec 'tsc && node test/aestheticsort.js' -e ts",
+        "test:illusionsort": "nodemon --watch ./src --exec 'tsc && node test/illusionsort.js' -e ts"
+    },
+    "keywords": [
+        "pixel art",
+        "art",
+        "sorting",
+        "image",
+        "manipulation",
+        "glitch"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/schulke-214/pixel-sort.git"
+    },
+    "bugs": {
+        "url": "https://github.com/schulke-214/pixel-sort/issues"
+    },
+    "homepage": "https://github.com/schulke-214/pixel-sort#readme",
+    "dependencies": {
+        "await-to-js": "^2.1.1",
+        "jimp": "^0.6.0"
+    },
+    "devDependencies": {
+        "@types/node": "^10.12.11",
+        "nodemon": "^1.18.7"
+    }
 }

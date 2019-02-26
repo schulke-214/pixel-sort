@@ -13,8 +13,6 @@
 -   [API Documentation](#api-documentation)
 -   [License](#license)
 
-pixel-sort also offers (stuff)
-
 ## Installation
 
 ```bash
