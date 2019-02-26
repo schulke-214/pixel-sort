@@ -1,16 +1,16 @@
 {
-  "compilerOptions": {
-    "target": "es5",                          
-    "module": "commonjs",                     
-    "lib": ["es6","dom"],
-    "removeComments": true,
-    "sourceMap": true,
-    "declaration": true,              
-    "outDir": "lib",                          
-    "rootDir": "src",                         
-    "strict": true,                           
-    "esModuleInterop": true,   
-    "experimentalDecorators": true,               
-    "resolveJsonModule": true                 
-  }
+	"compilerOptions": {
+		"target": "es5",                          
+		"module": "commonjs",                     
+		"lib": ["es6","dom"],
+		"removeComments": true,
+		"sourceMap": true,
+		"declaration": true,              
+		"outDir": "lib",                          
+		"rootDir": "src",                         
+		"strict": true,                           
+		"esModuleInterop": true,   
+		"experimentalDecorators": true,               
+		"resolveJsonModule": true                 
+	}
 }
