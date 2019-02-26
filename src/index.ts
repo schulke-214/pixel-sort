@@ -33,7 +33,7 @@ class Sorter {
     // THIS METHOD LOADS A IMAGE INTO THIS CLASS WITH A GIVEN PATH
     public async load( imgPath:string, callback?:Function ):Promise<void> {
         // INITIALIZE VARIABLES
-        let err:Error;
+        let err:Error | null;
         let img:any;
 
         // IN THE CASE THIS CLASS GOT IMPORTET SET THE PATH RELATIVE TO THE DIRECTORY OF THE IMPORT DIR
@@ -77,7 +77,7 @@ class Sorter {
     // THIS METHOD SAVES THE PIXEL MANIPULATED WITH THIS CLASS TO A GIVEN OUTPUT PATH
     public async save( imgPath:string, callback?:Function ):Promise<void> {
         // VARIABLE DECLARATION
-        let err:Error;
+        let err:Error | null;
         
         // REPLACE THE BUFFER IN THE IMAGE BITMAP WITH THE MANIPULATED VERSION
         this.replaceBuffer()
