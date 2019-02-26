@@ -29,18 +29,18 @@ yarn add pixel-sort
 const { Sorter } = require('pixel-sort');
 const sorter = new Sorter();
 
-sorter.load('./raw.png', err => {
-	if (err) throw err;
-	// image is now loaded up into the sorter
-	sorter.lightsort({ direction: 'LTR' }, err => {
-		if (err) throw err;
-		// image was sorted with this filter
-		sorter.save('./sorted.png', err => {
-			if (err) throw err;
-			// image was saved to the file system
-		});
+(async () => {
+	// load an image
+	await sorter.load('./input.png');
+
+	// apply some filters
+	await sorter.lightsort({
+		direction: 'LTR'
 	});
-});
+
+	// save the image
+	await sorter.save('./output.png');
+})();
 ```
 
 #### Output
