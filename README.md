@@ -23,8 +23,10 @@ pixel-sort also offers (stuff)
 
 ## Installation
 
-First install the package as dependencie
-`npm install pixel-sort`
+```bash
+yarn add pixel-sort
+npm install pixel-sort
+```
 
 ## API Documentation
 
@@ -74,3 +76,7 @@ sorter.load('./raw.png', err => {
 pixel-sort is licensed under the [MIT License](https://github.com/schulke-214/pixel-sort/blob/master/LICENSE).
 
 [back to top](#pixel-sort)
+
+```
+
+```
