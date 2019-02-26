@@ -6,17 +6,11 @@
 
 [pixel-sort](https://www.npmjs.com/package/pixel-sort/) is a library for creating pixel art with node.js.
 
-Offering you so much flexibility with a damn easy API.
-
-## Examples
-
-These are a few images sorted with [pixel-sort](https://www.npmjs.com/package/pixel-sort/).
-
 ## Table of contents
 
 -   [Installation](#installation)
+-   [Examples](#examples)
 -   [API Documentation](#api-documentation)
--   [License](#license)
 -   [License](#license)
 
 pixel-sort also offers (stuff)
@@ -25,14 +19,11 @@ pixel-sort also offers (stuff)
 
 ```bash
 yarn add pixel-sort
-npm install pixel-sort
 ```
 
-## API Documentation
+## Examples
 
-`pixel-sort` has only one named export, the `Sorter` class. Its responsible for loading all the pixels of a image, sort them and finally save the resulting image. This example shows how simple the usage of the module can be. You can break this down into 3 simple steps: load, manipulate and save.
-
-#### raw.png
+#### Input
 
 <img src="./test/data/example.jpg" width="250px">
 
@@ -54,11 +45,16 @@ sorter.load('./raw.png', err => {
 });
 ```
 
-#### sorted.png
+#### Output
 
 <img src="./test/output/lightsort.png" width="250px">
 
 <!--
+## API Documentation
+
+`pixel-sort` has only one named export, the `Sorter` class. Its responsible for loading all the pixels of a image, sort them and finally save the resulting image. This example shows how simple the usage of the module can be. You can break this down into 3 simple steps: load, manipulate and save.
+
+
 ##### Constructor
 
 ##### Load
