@@ -71,6 +71,8 @@ pixel-sort is licensed under the [MIT License](https://github.com/schulke-214/pi
 
 [back to top](#pixel-sort)
 
-```
+---
 
-```
+<a href="https://www.browserstack.com/"> <img src="https://3fxtqy18kygf3on3bu39kh93-wpengine.netdna-ssl.com/wp-content/themes/browserstack/img/header-logo.svg" height="25px" /> </a>
+
+Thanks to [BrowserStack](https://www.browserstack.com/) for supporting the development of this project with free automated testing to make this project hopefully run in browser environments aswell!
