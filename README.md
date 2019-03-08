@@ -73,6 +73,6 @@ pixel-sort is licensed under the [MIT License](https://github.com/schulke-214/pi
 
 ---
 
-<a href="https://www.browserstack.com/"> <img src="https://3fxtqy18kygf3on3bu39kh93-wpengine.netdna-ssl.com/wp-content/themes/browserstack/img/header-logo.svg" height="25px" /> </a>
+<a href="https://www.browserstack.com/"> <img src="https://p14.zdusercontent.com/attachment/1015988/oJOmCRW36ce5eAuyVAKeXS3ty?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..NFnqUPin_vf7Rek9Klci9Q.cG9copj1gfdFmnfv9fckcx2x9IOt-AtdIrSwDarKjfxyaDgGfbTOqsabXkfeOEiObLQYbWEz5O8NqJoE-yjgh9MkMwlcFH5-sVPI1YbeN1o-kSI0Xs1hGpeFyLhdouK0e2GEmC8bLg27E-gyXgjtHSjfN4x1Re3Q9vS2Q2O4W4nsHoKxGsgR9U_tpu7UnZjWHHChgEO-uHftXxFHKZ4cKGG0IxPgO0LTIU1AiFokHzvdKJGIYWMzo47njt5aAhg6DpnmaZX4DfCZZmOY4MOaUKdIfpfpTsr8hhi4dRP7d1c.V8EIS0_txg5TdfDTGg-pSw" height="100px" /> </a>
 
-Thanks to [BrowserStack](https://www.browserstack.com/) for supporting the development of this project with free automated testing to make this project hopefully run in browser environments aswell!
+Thanks to [BrowserStack](https://www.browserstack.com/) for supporting the development of this project with awesome testing tools to make this project hopefully run in browser environments soon aswell!
